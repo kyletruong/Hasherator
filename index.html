@@ -90,12 +90,12 @@
           and takes in the user input-->
     <button onclick="
       if(imgurl.value == '') { 
-        alert('Please enter an image URL!'); 
+        alert('Please enter an image URL'); 
         return;
       } 
     
       else if (!validFile(imgurl.value)) {
-        alert('Supported File Types: JPEG, PNG, TIFF, BMP');
+        alert('Only supports JPEG, PNG, TIFF, BMP');
         return;
       }
       predict_click($('#imgurl').val(), 'url');">Submit</button>
@@ -106,16 +106,17 @@
       <input type="file" id="filename" placeholder="Filename" />
     <button onclick="
       if(filename.value == '') { 
-        alert('Please browse for a file!'); 
+        alert('Please upload a file'); 
         return;
       } 
     
       else if (!validFile(filename.value)) {
-        alert('Supported File Types: JPEG, PNG, TIFF, BMP');
+        alert('Only supports JPEG, PNG, TIFF, BMP');
         return;
       }
       predict_click($('#filename').val(), 'file');">Predict!</button>
       <!-- creates a "choose file" button that takes in the arguement presented from the previous button -->
+    </center>
   </div>
 
   <div id="predictions" class="center">
@@ -127,7 +128,7 @@
     <div id="concepts" class="conceptBox">
     </div>
   </div>
-    </center>
+    
 
 </body>
 </html>
