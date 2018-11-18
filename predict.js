@@ -1,10 +1,12 @@
+//grabs the click and whether if the user clicks or uses an url, then do that command
 function predict_click(value, source) {
   var index = document.getElementById("hidden-counter").value;
 
+   //if the user has to click anywhere, then you need to jump to create the basicprintout
   if(index > 1) {
     createNewDisplayDiv(index);
   }
-  
+  //if the data is given through a url, then replace that ulr with a literal and allow it to try to predict
   if(source === "url") {
     document.getElementById("img_preview" + index).src = value;
     doPredict({ url: value });
@@ -46,13 +48,13 @@ function doPredict(value) {
       var tagArray, regionArray;
       var tagCount = 0;
       var modelName = response.rawData.outputs[0].model.name;
-      var modelHeader = '<b><span style="font-size:14px">' + 'Concepts</span></b>';
+      var modelHeader = '<b><span style="font-size:14px">' + 'Hashtags</span></b>';
     
       if (response.rawData.outputs[0].data.hasOwnProperty("concepts")) {
         tagArray = response.rawData.outputs[0].data.concepts;
         
         for (var other = 0; other < tagArray.length; other++) {
-          conceptNames += '<li>' + tagArray[other].name;
+          conceptNames += '<li>' + '#' + tagArray[other].name;
         }
         
         tagCount=tagArray.length;
@@ -74,7 +76,7 @@ function doPredict(value) {
     }
   );
 }
-
+//grabs the general model for the clarifai
 function getSelectedModel() {
   return Clarifai.GENERAL_MODEL;
 }
@@ -95,6 +97,7 @@ function createNewDisplayDiv(index) {
   mainDiv.innerHTML = elem.innerHTML + mainDiv.innerHTML;
 }
 
+//creats JSON file 
 function createHiddenDivs(urlOrBase64, source) {
   var index = document.getElementById("hidden-counter").value;
   
@@ -116,6 +119,7 @@ function createHiddenDivs(urlOrBase64, source) {
   document.getElementById("hidden-counter").value = parseInt(index)+1;
 }
 
+//capitialize the first letter and append the rest
 function capitalize(s)
 {
   return s[0].toUpperCase() + s.slice(1);
