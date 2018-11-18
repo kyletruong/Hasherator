@@ -83,6 +83,13 @@
       margin-bottom:30px;
       height:100%;
     }
+    
+    .center {
+    margin: auto;
+    width: 60%;
+    
+    text-align:center;
+}
 
   </style>
       <meta charset="utf-8" />
@@ -127,7 +134,7 @@
   </form> -->
   <h3>Enter image URL</h3>
   <div style="float:center">
-    <input type="text" id="imgurl" placeholder="Image URL" size="50"/>
+    <input type="text" id="imgurl" placeholder="Image URL" size="50">
     <button onclick="
       if(imgurl.value == '') { 
         alert('Please enter an image URL!'); 
@@ -159,7 +166,7 @@
   </center>
   </div>
 
-  <div id="predictions">
+  <div id="predictions" class="center">
     <div style="margin-top:30px; margin-left:20px; margin-bottom:30px; clear:left; float:left">
       <img id="img_preview1" src="" width="400"/>
       <br/>
