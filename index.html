@@ -25,28 +25,28 @@
   }
   
   // Fills custom model dropdown
-  window.onload = function() {
-    var select = document.getElementById("custom_models_dropdown");
+  // window.onload = function() {
+  //   var select = document.getElementById("custom_models_dropdown");
     
-    app.models.list().then(
-      function(response) {
-        var ids = response.rawData;
+  //   app.models.list().then(
+  //     function(response) {
+  //       var ids = response.rawData;
         
-        for(var i=0; i < ids.length; i++) {
-          var model = ids[i];
-          if(model.app_id != "main") {
-            var el = document.createElement("option");
-            el.textContent = model.name;
-            el.value = model.id;
-            select.appendChild(el);
-          }
-        }
-      },
-      function(err) {
-        alert(err);
-      }
-    );
-  }
+  //       for(var i=0; i < ids.length; i++) {
+  //         var model = ids[i];
+  //         if(model.app_id != "main") {
+  //           var el = document.createElement("option");
+  //           el.textContent = model.name;
+  //           el.value = model.id;
+  //           select.appendChild(el);
+  //         }
+  //       }
+  //     },
+  //     function(err) {
+  //       alert(err);
+  //     }
+  //   );
+  // }
   </script>
   
   <style type="text/css">
@@ -60,7 +60,7 @@
       -moz-columns: 1;
       overflow:auto;
     }
-    li {
+    /* li {
       box-shadow: 0 0 0 2px #546578 inset;
       margin: 0 0 5px 0;
       border-radius: 16px;
@@ -69,7 +69,7 @@
       font-weight: 500;
       font-size: 15px;
       color: #2E4157;
-    }
+    } */
     ul li i{
       font-family: "Lucida Console", Courier, monospace;
       font-style: normal;
@@ -83,15 +83,32 @@
       margin-bottom:30px;
       height:100%;
     }
+
   </style>
+      <meta charset="utf-8" />
+      <title>api_testing</title>
+      <link href="css/default.css" rel="stylesheet" />
+      <title>Bootstrap Example</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
-  <div id="Title" style="font-size:48px; font-face:Arial; margin-bottom:20px;"><img src="Clarifai_Logo.png" id="logo"/>&nbsp;Image Recognition Scanner</div>
-  <div id="Model_Title" style="font-size:16px; margin-bottom:5px">Model</div>
+    <div class="container">
+        <center>
+            <div class="jumbotron">
+                <h1>Welcome to Team Hero!</h1>
+                <p>Our goal is to predict your picture and hopefully guess it right!</p>
+            </div>
+        
+  <!-- <div id="Title" style="font-size:48px; font-face:Arial; margin-bottom:20px;"><img src="teamlogo.jpg" id="logo"/>&nbsp;Image Recognition Scanner</div> -->
+  <!-- <div id="Model_Title" style="font-size:16px; margin-bottom:5px">Model</div> -->
   <input type="hidden" id="hidden-counter" name="hidden-counter" value="1"/>
-  <form action="" style="font-size:14px; margin-bottom:20px; float:left; margin-right:30px;">
+  <!-- <form action="" style="font-size:14px; margin-bottom:20px; float:left; margin-right:30px;">
     <input type="radio" name="model" value="general" checked="checked"> General<br>
-    <!-- <input type="radio" name="model" value="food"> Food<br>
+    <input type="radio" name="model" value="food"> Food<br>
     <input type="radio" name="model" value="NSFW"> NSFW<br>
     <input type="radio" name="model" value="travel"> Travel<br>
     <input type="radio" name="model" value="wedding"> Wedding<br>
@@ -106,9 +123,11 @@
     <input type="radio" name="model" value="portrait"> Portrait Quality<br>
     <input type="radio" name="model" value="landscape"> Landscape Quality<br>
     <input type="radio" name="model" value="texturespatterns"> Textures & Patterns<br>
-    <input type="radio" name="model" value="custom"> Custom &nbsp;<select id="custom_models_dropdown"></select><br> -->
-  </form>
-  <div style="float:left">
+    <input type="radio" name="model" value="custom"> Custom &nbsp;<select id="custom_models_dropdown"></select><br>
+  </form> -->
+  <h3>Enter image URL</h3>
+  <div style="float:center">
+    <input type="text" id="imgurl" placeholder="Image URL" size="50"/>
     <button onclick="
       if(imgurl.value == '') { 
         alert('Please enter an image URL!'); 
@@ -119,13 +138,12 @@
         alert('Supported File Types: JPEG, PNG, TIFF, BMP');
         return;
       }
+      predict_click($('#imgurl').val(), 'url');">Submit</button>
     
-      predict_click($('#imgurl').val(), 'url');" style="width:112px">Predict a URL!</button>
-    
-    <input type="text" id="imgurl" placeholder="Image URL" size="80"/>
-    
+    <!-- <input type="text" id="imgurl" placeholder="Image URL" size="50"/> -->
+  
     <br/><br/>
-    
+
     <button onclick="
       if(filename.value == '') { 
         alert('Please browse for a file!'); 
@@ -136,16 +154,16 @@
         alert('Supported File Types: JPEG, PNG, TIFF, BMP');
         return;
       }
-      predict_click($('#filename').val(), 'file');">Predict a local file!</button>
-    
+      predict_click($('#filename').val(), 'file');">Predict local file</button>
     <input type="file" id="filename" placeholder="Filename" size="80"/>
+  </center>
   </div>
-  
+
   <div id="predictions">
     <div style="margin-top:30px; margin-left:20px; margin-bottom:30px; clear:left; float:left">
       <img id="img_preview1" src="" width="400"/>
       <br/>
-      <span id="add-image-button" style="visibility:hidden"><button onClick="addImageToApp(1)">Add image to application</button></span>
+      <!-- <span id="add-image-button" style="visibility:hidden"><button onClick="addImageToApp(1)">Add image to application</button></span> -->
     </div>
     <div id="concepts" class="conceptBox">
     </div>
