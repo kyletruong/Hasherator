@@ -1,6 +1,6 @@
 # Hasherator - Hackathon Project
 
-https://hasherator.netlify.com
+https://hasherator.netlify.app
 
 Project is meant to augment social media relevancy using Clarifai's image recognition API. Upload a photo directly to the website and the model will predict the most appropriate hashtags.
 
